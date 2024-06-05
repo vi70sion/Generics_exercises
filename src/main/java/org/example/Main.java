@@ -1,6 +1,9 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,7 +29,7 @@ public class Main {
 
         Pair<String, Integer> pair1;
         pair1 = new Pair<>("String1", 5);
-        System.out.println(pair);
+        System.out.println(pair1);
         pair1.setFirst("String2", 10);
         System.out.println(pair1.getFirst() + " " + pair1.getSecond());
         System.out.println();
@@ -128,8 +131,114 @@ public class Main {
         String[] stringMasyvas = new String[] {"Pirmas", "Antras", "Trečias", "Ketvirtas", "Penktas"};
         exMethods.printArray(stringMasyvas);
 
+        Random random = new Random();
+        int randomSize = random.nextInt(11);
+        intMasyvas = new Integer[randomSize];
+        for (int i = 0; i < randomSize; i++){
+            intMasyvas[i] = random.nextInt(100);
+        }
+        exMethods.printArray(intMasyvas);
+
+        Character[] charMasyvas = new Character[randomSize];
+        for (int i = 0; i < randomSize; i++){
+            charMasyvas[i] = (char) (random.nextInt(26) + 'a');
+        }
+        exMethods.printArray(charMasyvas);
+        exMethods.printArray(null);
+        Character[] emptyMasyvas = new Character[0];
+        exMethods.printArray(emptyMasyvas);
+
+//        2.2 Uzduotis: arrayToList
+//    * sukurti metoda pavadinimu arrayToList
+//    * i metodo parametrus paduodame: T[] array
+//    * metodas sukuria ArrayList instanca, iteruoja per array masyva ir
+//      prideda visas reiksmias i ArrayList, grazina ArrayList su reiksmemis
+//    * Jei array yra null tada grazina tuscia ArrayList instanca.
+//    * Paduoti Character masyva su reiksmemis, atspausdinti gauta rezultata
+//    * Paduoti tuscia Character masyva su reiksmemis, atspausdinti gauta rezultata
+//    * Paduoti Character masyvo referencija, atspausdinti gauta rezultata
+
+        List<Character> charList = new ArrayList<>();
+        charList = exMethods.arrayToList(charMasyvas);
+        System.out.println(charList);
+        charList = exMethods.arrayToList(emptyMasyvas);
+        System.out.println(charList);
+
+//        2.3 Uzduotis: swap indexes
+//    * sukurti metoda pavadinimu swap
+//    * i metodo parametrus paduodame: T[] array, int indexFirst, int indexSecond
+//    * metodas paima elementu reiksmes ideksuose (indexFirst, indexSecond),
+//      sukeicia vietomis ir grazina modifikuota masyva.
+//    * iskviesti metoda swap(), paduoti Charracter masyva su reiksmemis, kad
+//      sukeistu pirma elementa su paskutiniu ir atspausdinti su metodo
+//      printArray() pagalba
+//    * iskviesti metoda swap(), tas pats Charracter masyvas, indexFirst =0 ir
+//      indexSecond yra didesnis nei masyvo ilgis, tikimes gauti pranesima
+//      konsoleje:
+//      "Please check an instance of array or indices"
+//    * iskviesti metoda swap(), paduoti tuscia Charracter masyva, ideksuose 0 ir 1,
+//      tikimes gauti pranesima konsoleje:
+//      "Please check an instance of array or indices"
+//    * iskviesti metoda swap(), paduoti masyvo referencija, ideksuose 0 ir 1,
+//      metodas ismeta klaida: NullPointerException
+
+        Character[] chMasyvas = new Character[] {'k', 'q', 'c', 'w', 'a', 'n', 't', 'n', 'f'};
+        exMethods.printArray(chMasyvas);
+        Character[] swapMasyvas = (Character[]) exMethods.swap(chMasyvas, 1, 2);
+        exMethods.printArray(swapMasyvas);
+        swapMasyvas = (Character[]) exMethods.swap(chMasyvas, 0, chMasyvas.length-1);
+        exMethods.printArray(swapMasyvas);
+        try{
+            swapMasyvas = (Character[]) exMethods.swap(chMasyvas, 0, chMasyvas.length+1);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
+        }
+        try{
+            swapMasyvas = (Character[]) exMethods.swap(emptyMasyvas, 0, 1);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
+        }
+        try{
+            swapMasyvas = (Character[]) exMethods.swap(null, 0, 1);
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+        }
+
+//        3.BOUNDED TYPES
+//        Sukuriam klase ExercisesGenericsBoundedTypes, kurioje atliekame
+//        visas uzduotis.
+//        3.1 Uzduotis: compareArrays
+//        Parasyti generic metoda, kuris paima to paties tipo du masyvus, patikrina ar
+//        elementu reiksmes yra tos pacios ir sudeti vienoda eiles tvarka. Uztikrinti,
+//        kad masyvas talpina tik skaicius.
+
+        System.out.println();
+        Integer[] arrayInt01 = {1,2,3,4};
+        Integer[] arrayInt02 = {1,2,3,4};
+        Integer[] arrayInt03 = {1,2,3,3};
+        Integer[] arrayInt04 = {1,2,3};
+
+        ExercisesGenericsBoundedTypes.prnArray((Number[]) ExercisesGenericsBoundedTypes.compareArrays(arrayInt01,arrayInt02));
+        ExercisesGenericsBoundedTypes.prnArray((Number[]) ExercisesGenericsBoundedTypes.compareArrays(arrayInt01,arrayInt03));
+        ExercisesGenericsBoundedTypes.prnArray((Number[]) ExercisesGenericsBoundedTypes.compareArrays(arrayInt01,arrayInt04));
+        ExercisesGenericsBoundedTypes.prnArray((Number[]) ExercisesGenericsBoundedTypes.compareArrays(arrayInt04,arrayInt01));
+        System.out.println("-".repeat(25));
+
+        Double[] arrayDbl01 = {1.0,2.0,3.0,4.0};
+        Double[] arrayDbl02 = {1.0,2.0,3.0,4.0};
+        Double[] arrayDbl03 = {1.0,2.0,3.0,3.0};
+        Double[] arrayDbl04 = {1.0,2.0,3.0};
+
+        ExercisesGenericsBoundedTypes.prnArray((Number[]) ExercisesGenericsBoundedTypes.compareArrays(arrayDbl01,arrayDbl02));
+        ExercisesGenericsBoundedTypes.prnArray((Number[]) ExercisesGenericsBoundedTypes.compareArrays(arrayDbl01,arrayDbl03));
+        ExercisesGenericsBoundedTypes.prnArray((Number[]) ExercisesGenericsBoundedTypes.compareArrays(arrayDbl01,arrayDbl04));
+        ExercisesGenericsBoundedTypes.prnArray((Number[]) ExercisesGenericsBoundedTypes.compareArrays(arrayDbl04,arrayDbl01));
+        System.out.println("-".repeat(25));
 
 
 
     }
+
+
+
 }

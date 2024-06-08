@@ -235,6 +235,80 @@ public class Main {
         ExercisesGenericsBoundedTypes.prnArray((Number[]) ExercisesGenericsBoundedTypes.compareArrays(arrayDbl04,arrayDbl01));
         System.out.println("-".repeat(25));
 
+//        3.2 Uzduotis:: sumEvenAndOdd
+//        Parasyti generic metoda, kuris paima sarasa (List), atskirai susumuoja visus
+//        lyginius ir nelyginius skaicius, rezultata grazina Map<String, Double>.
+//        Uztikrinti, kad sarasas talpina tik skaicius.
+
+        List<Integer> listInt01 = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        List<Double> listDbl01 = List.of(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
+        System.out.println(ExercisesGenericsBoundedTypes.sumEvenAndOdd(listInt01));
+        System.out.println(ExercisesGenericsBoundedTypes.sumEvenAndOdd(listDbl01));
+        System.out.println("-".repeat(25));
+
+//        3.3 Uzduotis: findIndex
+//        Parasyti generic metoda, kuriam paduodame sarasa ir simboli, kuri norime surasti
+//        tame sarase. Grazina indekso numeri, kuriame yra ieskomas simbolis, o jei neranda
+//        tada grazina -1.
+//        Uztikrinti, kad sarasas talpina tik simboliu eilute(CharSequence).
+
+        List<String> stringList = List.of("apple", "banana", "cherry", "orange");
+        List<Integer> listInt02 = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        System.out.println(ExercisesGenericsBoundedTypes.findIndex(stringList, "cherry"));
+        System.out.println(ExercisesGenericsBoundedTypes.findIndex(stringList, "kiwi"));
+        //System.out.println(ExercisesGenericsBoundedTypes.findIndex(listInt02, 2)); // compile error
+        System.out.println("-".repeat(25));
+
+//        3.4 Uzduotis: reversList
+//        Parasyti generic metoda, kuris paima sarasa, sudelioja atvirkstine tvarka ir
+//        grazina pakeista sarasa.
+//        Uztikrinti, kad sarasas talpina tik simboliu eilute(CharSequence).
+
+        List<String> stringList02 = List.of("apple", "banana", "cherry", "orange");
+        List<Integer> listInt03 = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        System.out.println(ExercisesGenericsBoundedTypes.reverseList(stringList02));
+        //System.out.println(ExercisesGenericsBoundedTypes.reverseList(listInt03)); // compile erro
+        System.out.println("-".repeat(25));
+
+//        3.5 Uzduotis: mergeEverySecondElement
+//        Parasyti generic metoda, kuris paima du sarasus ir sujungia visus elementus nuosekliai
+//        kas antra.
+
+        List<String> stringList03 = List.of("apple", "banana", "cherry", "orange");
+        List<String> stringList04 = List.of("kiwi", "fig", "melon", "mango", "mandarin","grapes" );
+        System.out.println(ExercisesGenericsBoundedTypes.mergeEverySecondElement(stringList03,stringList04));
+        System.out.println("-".repeat(25));
+
+//    4.GENERIC INTERFACES
+//    4.1 Uzduotis: ListProcessor
+//    * Sukurti ListProcessor interface, kuris priima <T>
+//    * Interface turi sekancius abstrakcius metodus su default prieeigos modifikatorium:
+//    * addElement, parametruose T element, metodas nieko negrazina
+//    * removeElement, parametruose T element, metodas nieko negrazina
+//    * isEmpty, metodas brazina boolean tipa
+//
+//    * Sukurti StringListProcessorImpl klase, kuri implementuoja ListProcessor interface
+//    * klase turi viena field: modifikatoriai private ir final tipas List<String>
+//    * Default kostrukturius kuris sukuria klases kintamajam instance ArrayList
+//    * Overide visus implementuojamus metodus
+//    * Overid metoda toString, kad atspausdinti visas saugomas reiksmes
+
+//        5. WILDCARDS
+//        5.1 Uzduotis: wildcards to sumEvenAndOdd
+//        Perdaryti auskciau sukurta metoda sumEvenAndOdd:
+//        * sumEvenAndOdd01 parametruose paduodam Upper Bounded Wildecard
+//        * sumEvenAndOdd02 parametruose paduodam Lower Bounded Wildecard
+//        * sumEvenAndOdd03 parametruose paduodam Unbounded Wildecard
+
+        //List<Integer> listInt01 = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        //List<Double> listDbl01 = List.of(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
+        System.out.println(ExercisesGenericsBoundedTypes.sumEvenAndOdd01(listInt01));
+        System.out.println(ExercisesGenericsBoundedTypes.sumEvenAndOdd01(listDbl01));
+        System.out.println("-".repeat(25));
+
+        System.out.println(ExercisesGenericsBoundedTypes.sumEvenAndOdd03(listInt01));
+        System.out.println(ExercisesGenericsBoundedTypes.sumEvenAndOdd03(listDbl01));
+        System.out.println("-".repeat(25));
 
 
     }
